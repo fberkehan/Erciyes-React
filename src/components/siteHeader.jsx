@@ -10,11 +10,17 @@ function siteHeader() {
     </a>
     {/* Right-sided navbar links. Hide them on small screens */}
     <div className="w3-right w3-hide-small">
-      <a href="/urunler" className="w3-bar-item w3-button">
+    <a href="/urunler" className="w3-bar-item w3-button">
         Products
       </a>
+    
     </div>
-  </div>
+    <div className="w3-right w3-hide-small">
+    <a href="/divManupilasyonu" className="w3-bar-item w3-button">
+      divManupilasyonu
+      </a>
+      </div>
+      </div>
 </>
 
   )
