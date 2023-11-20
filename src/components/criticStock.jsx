@@ -1,32 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { suppliers } from '../data/suppliers';
 
+function CriticStock() {
+  const [urunler, setUrunler] = useState(suppliers);
 
 
-let urunler = [];
+  const handleClick = (event) => {
+    const id = event.target.id;
+    if (id === 'KritikStok') {
+      const kritikUrunler = suppliers.filter((urun) => urun.unitsInStock <= 10);
+      setUrunler(kritikUrunler);
+    } else if (id === 'ucuzUrunler') {
+      const ucuzUrunler = suppliers.filter((urun) => urun.unitPrice <= 10);
+      setUrunler(ucuzUrunler);
+    } else if (id === 'pahaliUrunler') {
+      const pahaliUrunler = suppliers.filter((urun) => urun.unitPrice >= 100);
+      setUrunler(pahaliUrunler);
+    } else if (id === 'hepsiniGoster') {
+      setUrunler(suppliers);
+    }
+  };
 
-suppliers.map(supplier => (
-    urunler.push(supplier.name)
-));
 
-
-
-
-function kritikleriGoster() {
-    const kritikStok = document.getElementById('KritikStok');
-}
-
-function criticStock() {
   return (
     <div>
-
-<h2>Filtrele</h2>
-<button onClick={kritikleriGoster} id='KritikStok'>Kritik Stok</button>
-<button id='ucuzUrunler'>Ucuz Ürünler</button>
-<button id='pahaliUrunler'>Pahalı Ürünler</button>
-<button id='hepsiniGoster'>Hepsini Göster</button>
-
-        
+      <button id='KritikStok' onClick={handleClick}>Kritik Stok</button>
+      <button id='ucuzUrunler' onClick={handleClick}>Ucuz Ürünler</button>
+      <button id='pahaliUrunler' onClick={handleClick}>Pahalı Ürünler</button>
+      <button id='hepsiniGoster' onClick={handleClick}>Hepsini Göster</button>
       <table>
         <thead>
           <tr>
@@ -37,19 +38,19 @@ function criticStock() {
           </tr>
         </thead>
         <tbody>
-          {suppliers.map(supplier => (
-            <tr key={supplier.id}>
-              <td>{supplier.id}</td>
-              <td>{supplier.name}</td>
-              <td>{supplier.unitPrice}</td>
-              <td>{supplier.unitsInStock}</td>
+          {urunler.map((urun) => (
+            <tr key={urun.id}>
+              <td>{urun.id}</td>
+              <td>{urun.name}</td>
+              <td>{urun.unitPrice}</td>
+              <td>{urun.unitsInStock}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      
+
     </div>
-  )
+  );
 }
 
-export default criticStock
+export default CriticStock;
