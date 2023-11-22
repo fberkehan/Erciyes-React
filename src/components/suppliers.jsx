@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { suppliers } from '../data/suppliers'; // Doğru yolu sağladığınızdan emin olun
-
+import { suppliers } from '../data/suppliers'; 
 function Suppliers() {
   return (
     <div>
